@@ -28,26 +28,44 @@ import main
 
 @pytest.fixture
 def expected_percent_as_int() -> int:
+    '''
+    expected probability in percentage
+    '''
     return random.randint(10, 90)
 
 
 @pytest.fixture
 def expected(expected_percent_as_int:int) -> float:
+    '''
+    expected probability in float
+    '''
     return expected_percent_as_int * 0.01
 
 
 @pytest.fixture
 def threshold_value() -> float:
+    '''
+    function under test would return the probability
+        of the elements in the dataset below this value
+    '''
     return random.randint(10, 90) + random.uniform(0.1, 0.9)
 
 
 @pytest.fixture
 def data_distribution_factor() -> int:
+    '''
+    factor for the size of the dataset
+    '''
     return random.randint(2, 5)
 
 
 @pytest.fixture
 def data(threshold_value:float, data_distribution_factor:int, expected_percent_as_int:int) -> DATASET:
+    '''
+    generate a dataset
+    the number of elements in the dataset below the threshold value would be
+    expected_percent_as_int * data_distribution_factor
+    '''
     data_below = nr.uniform(0, int(threshold_value), expected_percent_as_int*data_distribution_factor)
     data_above = nr.uniform(int(threshold_value)+1, threshold_value * 2, (100 - expected_percent_as_int)*data_distribution_factor)
     return tuple(np.concatenate((data_below, data_above)).tolist())
@@ -55,6 +73,9 @@ def data(threshold_value:float, data_distribution_factor:int, expected_percent_a
 
 @pytest.fixture
 def result(data:DATASET, threshold_value:float) -> float:
+    '''
+    result of the function under test
+    '''
     return main.probability_below(data, threshold_value)
 
 
