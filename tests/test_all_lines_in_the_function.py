@@ -24,7 +24,10 @@ def test_function_only_in_py_file(py_file:pathlib.Path):
             continue
         elif line.startswith('import ') or (line.startswith('from ') and ' import ' in line):
             continue
-        assert line.startswith(' ') or line_strip == ''
+        assert line.startswith(' ') or line_strip == '', (
+            f"{line} not in any function\n"
+            f"{line} 는 어느 함수에도 포함되지 않음"
+        )
 
 
 @pytest.fixture
