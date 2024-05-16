@@ -36,10 +36,18 @@ def test_module(py_file:pathlib.Path):
             for alias in node.names:
                 logger.info(f"Import: {alias.name}")
                 if not(alias.name.startswith('numpy') or alias.name.startswith('scipy') or alias.name.startswith('matplotlib')):
-                    pytest.fail(f"tried to import {alias.name} in {py_file.relative_to(proj_folder)}")
+                    pytest.fail(
+                        f"tried to import {alias.name} in {py_file.relative_to(proj_folder)}\n",
+                        f"{py_file.relative_to(proj_folder)} 파일에서 {node.module}을(를) import 하지 마세요."
+                    )
         elif isinstance(node, ast.ImportFrom):
-            if node.module == "numpy":
-                pytest.fail(f"Import of numpy in {py_file.relative_to(proj_folder)}")
+            if not(node.module.startswith("numpy") or 
+                   node.module.startswith("scipy") or 
+                   node.module.startswith("matplotlib")):
+                pytest.fail(
+                    f"tried to import {node.module} in {py_file.relative_to(proj_folder)}\n",
+                    f"{py_file.relative_to(proj_folder)} 파일에서 {node.module}을(를) import 하지 마세요."
+                )
 
 
 def test_importable():
