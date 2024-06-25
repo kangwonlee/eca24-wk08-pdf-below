@@ -93,16 +93,8 @@ jobs:
       if: always()
       with:
         name: plots
-        path: ./*.png
-        retention-days: 21
-        overwrite: true
-
-    - name: upload json reports as artifacts
-      id: json-artifacts
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: reports
-        path: ./*.json
+        path: |
+          ./*.png
+          ./*.json
         retention-days: 21
         overwrite: true
