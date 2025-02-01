@@ -106,12 +106,12 @@ jobs:
       if: always()
       timeout-minutes: 2
 
-    - name: upload pngs as artifacts
-      id: png-artifacts
+    - name: upload artifacts
+      id: artifacts
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: plots
+        name: artifacts
         path: |
           ./*.png
           ./*.json
