@@ -2,7 +2,7 @@
 wk07_prob_below
 
 ## Purpose<br>목적
-* The `main` module contains the `probability_below()` function, used to calculate the probability of a randomly selected value from a dataset being less than a specified bound.<br>`main` 모듈의 `probability_below()` 함수는 임의의 데이터 집합에서 임의로 선택된 값이 주어진 상한값보다 작을 확률을 계산함.
+* The `exercise` module contains the `probability_below()` function, used to calculate the probability of a randomly selected value from a dataset being less than a specified bound.<br>`exercise` 모듈의 `probability_below()` 함수는 임의의 데이터 집합에서 임의로 선택된 값이 주어진 상한값보다 작을 확률을 계산함.
 
 ## Functionality<br>기능
 ### Input<br>입력

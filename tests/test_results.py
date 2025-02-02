@@ -23,7 +23,7 @@ proj_folder = test_folder.parent.absolute()
 sys.path.insert(0, str(proj_folder))
 
 
-import main
+import exercise
 
 
 @pytest.fixture
@@ -76,7 +76,7 @@ def result(data:DATASET, threshold_value:float) -> float:
     '''
     result of the function under test
     '''
-    return main.probability_below(data, threshold_value)
+    return exercise.probability_below(data, threshold_value)
 
 
 def test_probabilty_below_type(result:float):
